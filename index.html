@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#C9A85C">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Milano Eat">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Guida Ristoranti Torino 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F5F0E8;--charcoal:#1A1A1A;--gold:#C9A85C;--sage:#7A8C72;--warm:#FDFAF4;--lg:#E8E4DC;--muted:#6B6560;--mr:#E4002B;--gr:#8B1A1A;--eb:#1B3A6B;--fav:#E8445A;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--charcoal);}
+header{background:var(--charcoal);color:var(--cream);padding:52px 40px 40px;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;border:2px solid rgba(201,168,92,.18);}
+header::after{content:'';position:absolute;bottom:-70px;left:-70px;width:240px;height:240px;border-radius:50%;border:2px solid rgba(201,168,92,.12);}
+.hi{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.ht{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-weight:500;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(38px,6vw,72px);line-height:1.05;letter-spacing:-1px;}
+h1 em{font-style:italic;color:var(--gold);}
+.hs{margin-top:16px;font-size:13px;color:rgba(245,240,232,.55);max-width:460px;line-height:1.6;}
+.hc{margin-top:22px;display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(201,168,92,.35);padding:9px 18px;}
+.hc b{font-family:'Playfair Display',serif;font-size:26px;color:var(--gold);}
+.hc small{font-size:9px;color:rgba(245,240,232,.4);letter-spacing:1px;text-transform:uppercase;line-height:1.4;}
+.ctrl{background:var(--warm);border-bottom:1px solid var(--lg);padding:12px 40px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.05);}
+.ci{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:7px;}
+.row{display:flex;flex-wrap:wrap;gap:7px;align-items:center;}
+.sw{flex:1;min-width:170px;position:relative;}
+.sw input{width:100%;padding:7px 11px 7px 34px;border:1px solid var(--lg);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:12px;background:white;outline:none;}
+.si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:12px;}
+.fl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:500;white-space:nowrap;}
+.fg{display:flex;flex-wrap:wrap;gap:4px;}
+.fb{padding:5px 11px;border:1px solid var(--lg);border-radius:2px;background:white;font-family:'DM Sans',sans-serif;font-size:10px;cursor:pointer;transition:all .2s;color:var(--muted);white-space:nowrap;}
+.fb:hover,.fb.on{background:var(--gold);border-color:var(--gold);color:var(--charcoal);}
+.pb.on{background:var(--gold);border-color:var(--gold);color:var(--charcoal);}
+.fb.favf.on{background:var(--gold);border-color:var(--gold);color:var(--charcoal);}
+.dv{width:1px;height:16px;background:var(--lg);flex-shrink:0;}
+.rc{font-size:11px;color:var(--muted);margin-left:auto;white-space:nowrap;}
+.gw{max-width:1200px;margin:0 auto;padding:24px 40px 80px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2px;}
+.nr{text-align:center;padding:80px 20px;grid-column:1/-1;display:none;}
+.nr h3{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:8px;}
+.card{background:var(--warm);overflow:hidden;transition:transform .25s,box-shadow .25s;position:relative;}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(0,0,0,.1);}
+.favbtn{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:white;border:1px solid var(--lg);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all .2s;z-index:5;box-shadow:0 1px 6px rgba(0,0,0,.08);}
+.favbtn:hover{transform:scale(1.15);}
+.favbtn.on{background:white;border-color:var(--lg);}
+.wishbtn{position:absolute;top:50px;right:12px;width:32px;height:32px;border-radius:50%;background:white;border:1px solid var(--lg);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all .2s;z-index:5;box-shadow:0 1px 6px rgba(0,0,0,.08);}
+.wishbtn:hover{transform:scale(1.15);}
+.wishbtn.on{background:white;border-color:var(--lg);}
+.cb{padding:16px 18px 14px;}
+.ctag{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;padding-right:40px;}
+.ccu{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:500;}
+.cpr{font-size:10px;font-weight:600;color:var(--gold);background:rgba(201,168,92,.1);border:1px solid rgba(201,168,92,.25);padding:2px 8px;border-radius:2px;}
+.cn{font-family:'Playfair Display',serif;font-size:19px;line-height:1.2;margin-bottom:6px;padding-right:40px;}
+.lks{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:9px;}
+.lks a{font-size:10px;color:var(--muted);text-decoration:none;transition:opacity .2s;}
+.lks a:hover{opacity:.65;}
+.lks a.ws{color:var(--gold);font-weight:500;border-bottom:1px solid rgba(201,168,92,.3);}
+.sc{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px;}
+.sg{display:inline-flex;align-items:center;gap:3px;padding:3px 7px;border-radius:2px;font-size:9px;font-weight:600;}
+.sg.mi{background:#FFF0F0;border:1px solid #FFCDD2;color:var(--mr);}
+.sg.gr{background:#FFF8F0;border:1px solid #FFCC80;color:var(--gr);}
+.sg.es{background:#EEF2FF;border:1px solid #C5CAE9;color:var(--eb);}
+.sg.fd{opacity:.28;}
+.gn{font-size:7px;letter-spacing:.4px;text-transform:uppercase;opacity:.6;font-weight:400;}
+.cs{font-size:10.5px;color:var(--sage);font-style:italic;margin-bottom:9px;line-height:1.5;}
+.rvs{border-top:1px solid var(--lg);padding-top:8px;}
+.rv{font-size:10.5px;color:var(--muted);line-height:1.5;padding:3px 0;border-bottom:1px solid var(--lg);display:flex;gap:5px;}
+.rv:last-child{border-bottom:none;}
+.st{color:var(--gold);flex-shrink:0;font-size:8px;padding-top:2px;}
+@media(max-width:600px){header{padding:32px 18px 28px;}.ctrl{padding:10px 14px;}.gw{padding:18px 14px 60px;}.grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div style="background:#1A1A1A;border-bottom:1px solid rgba(201,168,92,.2);padding:8px 40px;">
+  <a href="https://stefanomanili.github.io/Stefano-pick/" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:rgba(245,240,232,.5);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;">
+    <span style="color:var(--gold);font-size:12px;">←</span>
+    <span>Stefano's Pick</span>
+  </a>
+</div>
+<header>
+  <div class="hi">
+    <p class="ht">Edizione 2026 · Stefano's Pick</p>
+    <h1>I Migliori Ristoranti<br>di <em>Torino</em></h1>
+    <p class="hs">Una selezione curata con i punteggi di Michelin, Gambero Rosso e L'Espresso.</p>
+    <div class="hc"><b id="tot">31</b><small>Ristoranti<br>Selezionati</small></div>
+  </div>
+</header>
+<div style="background:#111;border-bottom:2px solid var(--gold);">
+  <a href="https://www.google.com/maps/search/ristoranti+torino/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 40px;text-decoration:none;color:var(--cream);transition:background .2s;">
+    <span style="font-size:20px">🗺️</span>
+    <div><strong style="display:block;font-size:13px;color:var(--gold);letter-spacing:.4px;">Apri la mappa con tutti i ristoranti</strong></div>
+    <span style="color:var(--gold);font-size:16px;margin-left:8px">→</span>
+  </a>
+</div>
+<div class="ctrl">
+  <div class="ci">
+    <div class="row">
+      <div class="sw"><span class="si">🔍</span><input type="text" id="srch" placeholder="Cerca nome, cucina, zona..."></div>
+    </div>
+    <div class="row">
+      <span class="fl">Cucina</span>
+      <div class="fg" id="cg">
+        <button class="fb on" data-c="all">Tutti</button>
+        <button class="fb" data-c="italiana">Italiana</button>
+        <button class="fb" data-c="pesce">Pesce</button>
+        <button class="fb" data-c="giapponese">Giapponese</button>
+        <button class="fb" data-c="asiatica">Asiatica</button>
+        <button class="fb" data-c="internazionale">Internazionale</button>
+        <button class="fb" data-c="pizza">Pizza</button>
+      </div>
+    </div>
+    <div class="row">
+      <span class="fl">Zona</span>
+      <div class="fg" id="zg">
+        <button class="fb on" data-z="all">Tutte</button>
+        <button class="fb" data-z="centro">Centro</button>
+        <button class="fb" data-z="crocetta">Crocetta</button>
+        <button class="fb" data-z="san salvario">San Salvario</button>
+        <button class="fb" data-z="vanchiglia">Vanchiglia</button>
+        <button class="fb" data-z="aurora">Aurora</button>
+        <button class="fb" data-z="lingotto">Lingotto</button>
+        <button class="fb" data-z="nizza millefonti">Nizza M.</button>
+        <button class="fb" data-z="other">Altro</button>
+      </div>
+    </div>
+    <div class="row">
+      <span class="fl">Prezzo</span>
+      <div class="fg" id="pg">
+        <button class="fb pb on" data-p="all">Tutti</button>
+        <button class="fb pb" data-p="1">&lt;25</button>
+        <button class="fb pb" data-p="2">25–50</button>
+        <button class="fb pb" data-p="3">50–80</button>
+        <button class="fb pb" data-p="4">80–120</button>
+        <button class="fb pb" data-p="5">120+</button>
+      </div>
+    </div>
+    <div class="row">
+      <span class="fl">Guide</span>
+      <div class="fg" id="gg">
+        <button class="fb on" data-g="all">Tutte</button>
+        <button class="fb" data-g="michelin">⭐ Michelin</button>
+        <button class="fb" data-g="gambero">🍴 Gambero</button>
+        <button class="fb" data-g="espresso">👨‍🍳 Espresso</button>
+      </div>
+      <div class="dv"></div>
+      <button class="fb favf" id="favf">❤️ Wishlist <span id="favc"></span></button>
+      <button class="fb favf" id="wishf">✅ Visited <span id="wishc"></span></button>
+    </div>
+  </div>
+</div>
+<div class="gw">
+  <div class="grid" id="grid">
+    <div class="nr" id="nr"><h3>Nessun risultato</h3><p style="color:var(--muted)">Prova con un altro filtro</p></div>
+  </div>
+</div>
+<script src="app_torino.js"></script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('sw.js').then(function(r){
+      console.log('SW registered');
+    }).catch(function(e){
+      console.log('SW error:',e);
+    });
+  });
+}
+</script>
+</body>
+</html>
