@@ -45,7 +45,7 @@ window.toggleWish=function(i){
 window.toggleFav=function(i){
   var n=R[i].n;
   favs.has(n)?favs.delete(n):favs.add(n);
-  saveFavs();document.getElementById('zg').addEventListener('click',function(e){var b=e.target.closest('.fb');if(!b)return;document.querySelectorAll('#zg .fb').forEach(function(x){x.classList.remove('on');});b.classList.add('on');S.z=b.dataset.z;render();});
+  saveFavs();
 
 updateFavCount();render();
 };
@@ -124,6 +124,7 @@ function render(){
   for(var m=0;m<f.length;m++)grid.insertAdjacentHTML('beforeend',makeCard(R[f[m]],f[m]));
 }
 
+document.getElementById('zg').addEventListener('click',function(e){var b=e.target.closest('.fb');if(!b)return;document.querySelectorAll('#zg .fb').forEach(function(x){x.classList.remove('on');});b.classList.add('on');S.z=b.dataset.z;render();});
 document.getElementById('cg').addEventListener('click',function(e){var b=e.target.closest('.fb');if(!b)return;document.querySelectorAll('#cg .fb').forEach(function(x){x.classList.remove('on');});b.classList.add('on');S.c=b.dataset.c;render();});
 document.getElementById('pg').addEventListener('click',function(e){var b=e.target.closest('.fb');if(!b)return;document.querySelectorAll('#pg .fb').forEach(function(x){x.classList.remove('on');});b.classList.add('on');S.p=b.dataset.p;render();});
 document.getElementById('gg').addEventListener('click',function(e){var b=e.target.closest('.fb');if(!b)return;document.querySelectorAll('#gg .fb').forEach(function(x){x.classList.remove('on');});b.classList.add('on');S.g=b.dataset.g;render();});
